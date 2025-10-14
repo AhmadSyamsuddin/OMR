@@ -1,0 +1,146 @@
+[
+  {
+    "name": "HIIT Express 60",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "/assets/coaches/raka.jpg",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 20
+  },
+  {
+    "name": "Strength Upper A",
+    "coach": "Coach Dira",
+    "coachProfilePictureUrl": "/assets/coaches/dira.jpg",
+    "day": "Tue",
+    "duration": 75,
+    "quota": 18
+  },
+  {
+    "name": "Strength Lower A",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "/assets/coaches/bagas.jpg",
+    "day": "Wed",
+    "duration": 70,
+    "quota": 16
+  },
+  {
+    "name": "Core & Abs Builder",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "/assets/coaches/sari.jpg",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 24
+  },
+  {
+    "name": "Mobility Flow Plus",
+    "coach": "Coach Wina",
+    "coachProfilePictureUrl": "/assets/coaches/wina.jpg",
+    "day": "Fri",
+    "duration": 60,
+    "quota": 22
+  },
+  {
+    "name": "Yoga Vinyasa Deep",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "/assets/coaches/sari.jpg",
+    "day": "Sat",
+    "duration": 75,
+    "quota": 28
+  },
+  {
+    "name": "Boxing Fundamentals",
+    "coach": "Coach Luthfi",
+    "coachProfilePictureUrl": "/assets/coaches/luthfi.jpg",
+    "day": "Sun",
+    "duration": 75,
+    "quota": 18
+  },
+  {
+    "name": "Runner’s Base Endurance",
+    "coach": "Coach Yani",
+    "coachProfilePictureUrl": "/assets/coaches/yani.jpg",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 30
+  },
+  {
+    "name": "Sprint Power Intervals",
+    "coach": "Coach Aji",
+    "coachProfilePictureUrl": "/assets/coaches/aji.jpg",
+    "day": "Tue",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Cycling Endurance 70",
+    "coach": "Coach Rendi",
+    "coachProfilePictureUrl": "/assets/coaches/rendi.jpg",
+    "day": "Wed",
+    "duration": 70,
+    "quota": 22
+  },
+  {
+    "name": "Cross-Training Circuit Pro",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "/assets/coaches/raka.jpg",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 18
+  },
+  {
+    "name": "Kettlebell Conditioning 60",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "/assets/coaches/bagas.jpg",
+    "day": "Fri",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Bodyweight MetCon XL",
+    "coach": "Coach Tio",
+    "coachProfilePictureUrl": "/assets/coaches/tio.jpg",
+    "day": "Sat",
+    "duration": 60,
+    "quota": 26
+  },
+  {
+    "name": "Football Agility & Conditioning",
+    "coach": "Coach Rendi",
+    "coachProfilePictureUrl": "/assets/coaches/rendi.jpg",
+    "day": "Sun",
+    "duration": 75,
+    "quota": 22
+  },
+  {
+    "name": "Morning Quick Sweat 60",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "/assets/coaches/raka.jpg",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 28
+  },
+  {
+    "name": "Powerlifting Basics",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "/assets/coaches/bagas.jpg",
+    "day": "Tue",
+    "duration": 90,
+    "quota": 12
+  },
+  {
+    "name": "Functional Fitness 40+",
+    "coach": "Coach Wina",
+    "coachProfilePictureUrl": "/assets/coaches/wina.jpg",
+    "day": "Wed",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Yoga Mobility Reset",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "/assets/coaches/sari.jpg",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 20
+  }
+]
