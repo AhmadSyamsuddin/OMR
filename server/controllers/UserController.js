@@ -37,6 +37,22 @@ class UserController {
             next(error);
         }
     }
+    static async updateMembership(req, res, next) {
+        try {
+            const { id } = req.user;
+
+            const user = await User.findByPk(id);
+            if (!user) {
+                throw { name: 'Not Found', message: 'User not found' };
+            }
+
+            await user.update({ isMembership: true });
+
+            res.status(200).json({ message: 'Membership status updated successfully', user: { id: user.id, email: user.email, isMembership: user.isMembership } });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = UserController;

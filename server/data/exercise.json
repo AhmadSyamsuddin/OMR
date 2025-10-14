@@ -1,56 +1,302 @@
 [
-  { "name": "Football (Soccer)", "category": "team", "intensity": "high" },
-  { "name": "Futsal", "category": "team", "intensity": "high" },
-  { "name": "Basketball", "category": "team", "intensity": "high" },
-  { "name": "Volleyball", "category": "team", "intensity": "medium" },
-  { "name": "Rugby Union", "category": "team", "intensity": "high" },
-  { "name": "Rugby Sevens", "category": "team", "intensity": "high" },
-  { "name": "American Football", "category": "team", "intensity": "high" },
-  { "name": "Baseball", "category": "ball-strike", "intensity": "medium" },
-  { "name": "Softball", "category": "ball-strike", "intensity": "medium" },
-  { "name": "Cricket", "category": "ball-strike", "intensity": "medium" },
-
-  { "name": "Field Hockey", "category": "team", "intensity": "high" },
-  { "name": "Ice Hockey", "category": "team", "intensity": "high" },
-  { "name": "Handball", "category": "team", "intensity": "high" },
-  { "name": "Water Polo", "category": "aquatic", "intensity": "high" },
-  { "name": "Tennis", "category": "racquet", "intensity": "medium" },
-  { "name": "Badminton", "category": "racquet", "intensity": "medium" },
-  { "name": "Table Tennis", "category": "racquet", "intensity": "low" },
-  { "name": "Squash", "category": "racquet", "intensity": "high" },
-  { "name": "Boxing", "category": "combat", "intensity": "high" },
-  { "name": "Kickboxing", "category": "combat", "intensity": "high" },
-
-  { "name": "Muay Thai", "category": "combat", "intensity": "high" },
-  { "name": "Mixed Martial Arts (MMA)", "category": "combat", "intensity": "high" },
-  { "name": "Judo", "category": "combat", "intensity": "high" },
-  { "name": "Karate", "category": "combat", "intensity": "medium" },
-  { "name": "Taekwondo", "category": "combat", "intensity": "medium" },
-  { "name": "Wrestling", "category": "combat", "intensity": "high" },
-  { "name": "Capoeira", "category": "combat", "intensity": "medium" },
-  { "name": "Swimming (Freestyle)", "category": "aquatic", "intensity": "medium" },
-  { "name": "Swimming (Butterfly)", "category": "aquatic", "intensity": "high" },
-  { "name": "Rowing (Indoor)", "category": "endurance", "intensity": "high" },
-
-  { "name": "Road Cycling", "category": "endurance", "intensity": "medium" },
-  { "name": "Mountain Biking", "category": "endurance", "intensity": "high" },
-  { "name": "Track Running (5K)", "category": "track", "intensity": "medium" },
-  { "name": "Marathon Running", "category": "endurance", "intensity": "high" },
-  { "name": "Trail Running", "category": "endurance", "intensity": "high" },
-  { "name": "Triathlon", "category": "endurance", "intensity": "high" },
-  { "name": "Powerlifting", "category": "strength", "intensity": "high" },
-  { "name": "Calisthenics", "category": "strength", "intensity": "medium" },
-  { "name": "CrossFit", "category": "strength", "intensity": "high" },
-  { "name": "Olympic Weightlifting", "category": "strength", "intensity": "high" },
-
-  { "name": "Rock Climbing (Bouldering)", "category": "climbing", "intensity": "high" },
-  { "name": "Rock Climbing (Top-Rope)", "category": "climbing", "intensity": "medium" },
-  { "name": "Hiking", "category": "outdoor", "intensity": "low" },
-  { "name": "Yoga (Vinyasa)", "category": "mind-body", "intensity": "low" },
-  { "name": "Yoga (Power)", "category": "mind-body", "intensity": "medium" },
-  { "name": "Pilates", "category": "mind-body", "intensity": "low" },
-  { "name": "Golf", "category": "precision", "intensity": "low" },
-  { "name": "Archery", "category": "precision", "intensity": "low" },
-  { "name": "Fencing", "category": "combat", "intensity": "medium" },
-  { "name": "Surfing", "category": "board", "intensity": "medium" }
+  {
+    "name": "Football (Soccer)",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://www.nbc.com/sites/nbcblog/files/styles/scale_1280/public/2024/07/paris-2024-olympics-soccer.jpg"
+  },
+  {
+    "name": "Futsal",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://mmc.tirto.id/image/otf/640x0/2022/01/22/istock-1208563153_ratio-16x9.jpg"
+  },
+  {
+    "name": "Basketball",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://www.rockstaracademy.com/lib/images/news/basketball.jpeg"
+  },
+  {
+    "name": "Volleyball",
+    "category": "team",
+    "intensity": "medium",
+    "image": "https://la28.org/content/dam/latwentyeight/olympic-sports/desktop/OLYBeachVolleyballDesktop.jpg"
+  },
+  {
+    "name": "Rugby Union",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://i.guim.co.uk/img/media/91cbfe3ba3e07f10aa862ce2cb43b268cbdc2ff6/562_476_4246_2547/master/4246.jpg?width=1200&quality=85&auto=format&fit=max&s=21dbf9b3ab3284cf477175fff1fe6ebf"
+  },
+  {
+    "name": "Rugby Sevens",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://www.worldrugbyshop.com/cdn/shop/articles/GettyImages-1234345180.jpg?v=1646303376&width=1600"
+  },
+  {
+    "name": "American Football",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://fittoplay.org/globalassets/pictures/american-football/american-football.jpg/LandingPageMainImage"
+  },
+  {
+    "name": "Baseball",
+    "category": "ball-strike",
+    "intensity": "medium",
+    "image": "https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_xl_2x/f_auto/primary/vkhfwa5qkqbalxorbpft"
+  },
+  {
+    "name": "Softball",
+    "category": "ball-strike",
+    "intensity": "medium",
+    "image": "https://detakpustakatoko.com/wp-content/uploads/2024/12/Mengenal-Permainan-Softball-Sejarah-Aturan-dan-Teknik-Dasar.png"
+  },
+  {
+    "name": "Cricket",
+    "category": "ball-strike",
+    "intensity": "medium",
+    "image": "https://images.theconversation.com/files/318602/original/file-20200304-66112-1hru0qb.jpg?ixlib=rb-1.1.0&rect=0%2C18%2C3164%2C2084&q=45&auto=format&w=754&fit=clip"
+  },
+  {
+    "name": "Field Hockey",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://drayer.urpt.com/wp-content/uploads/sites/26/2020/05/julia-young-field-hockey-gray.png"
+  },
+  {
+    "name": "Ice Hockey",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://www.orthovirginia.com/wp-content/uploads/2022/04/Hockey-Featured.jpg"
+  },
+  {
+    "name": "Handball",
+    "category": "team",
+    "intensity": "high",
+    "image": "https://ichef.bbci.co.uk/childrens-responsive-ichef-live/976/childrens-binary-store/r/1x/cbbc/spt_Handball-guide-hero2.jpg"
+  },
+  {
+    "name": "Water Polo",
+    "category": "aquatic",
+    "intensity": "high",
+    "image": "https://img.olympics.com/images/image/private/t_16-9_640/f_auto/v1723329181/primary/uhxtpvhvhv6wfcnizfme"
+  },
+  {
+    "name": "Tennis",
+    "category": "racquet",
+    "intensity": "medium",
+    "image": "https://www.mouratoglou.com/wp-content/uploads/2024/11/11dd1227-f3e1-4903-8755-cdbeeea0d97b-JUL01675.jpg"
+  },
+  {
+    "name": "Badminton",
+    "category": "racquet",
+    "intensity": "medium",
+    "image": "https://badmintonhq.co.uk/cdn/shop/articles/123.jpg?v=1704207657"
+  },
+  {
+    "name": "Table Tennis",
+    "category": "racquet",
+    "intensity": "low",
+    "image": "https://images.ctfassets.net/v8zaoys2pgzt/5GpsHZAl8mgJz9sfOERXNx/5594c024e1937d6ce302d3622de08e48/Table_Tennis-28.07.24-_DP97682.jpg"
+  },
+  {
+    "name": "Squash",
+    "category": "racquet",
+    "intensity": "high",
+    "image": "https://images.squarespace-cdn.com/content/v1/6369619b7c417035e7cc09db/c9b70c2b-5d64-4256-ab83-24470eda5432/two-squash-racquets-and-a-ball.jpg"
+  },
+  {
+    "name": "Boxing",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://cdn.britannica.com/76/187976-050-D8DA2DA7/Floyd-Mayweather-Jr-ducks-Philippines-Manny-Pacquiao-May-2-2015.jpg"
+  },
+  {
+    "name": "Kickboxing",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://itatami.it/wp-content/uploads/2024/03/kickboxing-storia-e-tecniche-avanzate-scaled.webp"
+  },
+  {
+    "name": "Muay Thai",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://a.storyblok.com/f/115220/2400x990/4bd3c366bb/muay-thai-vs-kickboxing-whats-the-difference.png/m/1250x625/smart"
+  },
+  {
+    "name": "Mixed Martial Arts (MMA)",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://res.cloudinary.com/dqcwnre7v/image/upload/f_auto,q_auto,c_fill,w_717,h_478/v1691965144/iexhatbmusjkxmilo8pi.avif"
+  },
+  {
+    "name": "Judo",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://jpnn24.com/wp-content/uploads/2025/03/Seni-Bela-Diri-Judo-Jepang-Simbol-Keterampilan-dan-Etika-800x472.jpg"
+  },
+  {
+    "name": "Karate",
+    "category": "combat",
+    "intensity": "medium",
+    "image": "https://static.wixstatic.com/media/0eb2e4_bf173d6bd04c4dc19d0f1d07ca490613~mv2.png/v1/fill/w_568,h_320,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0eb2e4_bf173d6bd04c4dc19d0f1d07ca490613~mv2.png"
+  },
+  {
+    "name": "Taekwondo",
+    "category": "combat",
+    "intensity": "medium",
+    "image": "https://www.paralympic.org/sites/default/files/styles/large_original/public/images/171020105248526_Amy%2BTruesdale.jpg?itok=pIrNKK_e"
+  },
+  {
+    "name": "Wrestling",
+    "category": "combat",
+    "intensity": "high",
+    "image": "https://cdn.britannica.com/94/215294-050-C5E44A29/Frank-Molinaro-Frank-Chamizo-Marquez-Italy-bronze-medal-match-freestyle-wrestling-2016-Olympic-Games.jpg"
+  },
+  {
+    "name": "Capoeira",
+    "category": "combat",
+    "intensity": "medium",
+    "image": "https://cdn.grid.id/crop/0x0:0x0/700x465/photo/bolasport/medium_9db83ddd696cb89ac79e39369358a07f.jpg"
+  },
+  {
+    "name": "Swimming (Freestyle)",
+    "category": "aquatic",
+    "intensity": "medium",
+    "image": "https://www.health.com/thmb/g4CNj6TFedvEttzJmqw-RZpwk4o=/2083x0/filters:no_upscale():max_bytes(150000):strip_icc()/Health-Swimming-080c78802f384a4687df5a3b13d5611e-3719a8e40a3c4c43a63a4d795e47c505.jpg"
+  },
+  {
+    "name": "Swimming (Butterfly)",
+    "category": "aquatic",
+    "intensity": "high",
+    "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/9833/GettyImages-526245433.jpg"
+  },
+  {
+    "name": "Rowing (Indoor)",
+    "category": "endurance",
+    "intensity": "high",
+    "image": "https://www.britishrowing.org/wp-content/uploads/2023/04/What-is-rowing-Lea-Crew.jpg"
+  },
+  {
+    "name": "Road Cycling",
+    "category": "endurance",
+    "intensity": "medium",
+    "image": "https://images.ctfassets.net/0k812o62ndtw/6DtTQ7Dmnq2Wy3TaC8pqv2/bfd3b3e752e3b417042da1769eef273e/SWEAT_RoadCycling_Tertiary__1__en9c55080f14ad6b97cde79aff73479ed09c55080f14ad6b97cde79aff73479ed0.jpg?w=1024&q=85"
+  },
+  {
+    "name": "Mountain Biking",
+    "category": "endurance",
+    "intensity": "high",
+    "image": "https://www.forestryengland.uk/sites/default/files/styles/list_image_large_2x/public/media/AL_Forestry_England_141023042%20%28Custom%29.JPG?h=8b264112&itok=dxoNEdaQ"
+  },
+  {
+    "name": "Track Running (5K)",
+    "category": "track",
+    "intensity": "medium",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/running-track-1667904802.jpg"
+  },
+  {
+    "name": "Marathon Running",
+    "category": "endurance",
+    "intensity": "high",
+    "image": "https://static01.nyt.com/images/2017/10/17/science/11physed-marathon-photo/11physed-marathon-photo-superJumbo.jpg"
+  },
+  {
+    "name": "Trail Running",
+    "category": "endurance",
+    "intensity": "high",
+    "image": "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt333952f465a48229/5de0ba9c940c02641378013d/_RUE2652_cut.jpg?format=pjpg&auto=webp&quality=76&width=1232"
+  },
+  {
+    "name": "Triathlon",
+    "category": "endurance",
+    "intensity": "high",
+    "image": "https://la28.org/content/dam/latwentyeight/olympic-sports/desktop/OLYTriathlonDesktop.jpg"
+  },
+  {
+    "name": "Powerlifting",
+    "category": "strength",
+    "intensity": "high",
+    "image": "https://photo-fhad-fithub.s3.ap-southeast-1.amazonaws.com/Tips_Melakukan_Powerlifting_dengan_Aman_freepik_3bc1835449.jpg"
+  },
+  {
+    "name": "Calisthenics",
+    "category": "strength",
+    "intensity": "medium",
+    "image": "https://gymgeneration.ch/cdn/shop/articles/calisthenics-die-kunst-der-korperbeherrschung-445570_f2ae8215-2c61-46d1-9ea6-567b30dbb16b.jpg?v=1744042070"
+  },
+  {
+    "name": "CrossFit",
+    "category": "strength",
+    "intensity": "high",
+    "image": "https://www.crossfit.com/wp-content/uploads/2024/06/28104219/2024-Crossfit-Double-Under-Workout-Workout-Of-The-Day-1024x576.jpg"
+  },
+  {
+    "name": "Olympic Weightlifting",
+    "category": "strength",
+    "intensity": "high",
+    "image": "https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_xl_2x/f_auto/v1535032286/primary/p9a2wxn93nuqk64zajbp"
+  },
+  {
+    "name": "Rock Climbing (Bouldering)",
+    "category": "climbing",
+    "intensity": "high",
+    "image": "https://gmgc.com/wp-content/uploads/2024/04/Ultimate-Guide-To-Indoor-Rock-Climbing-For-Kids_770x400.jpg"
+  },
+  {
+    "name": "Rock Climbing (Top-Rope)",
+    "category": "climbing",
+    "intensity": "medium",
+    "image": "https://images.everydayhealth.com/images/healthy-living/fitness/rock-climbing-guide-1440x810.jpg?w=508"
+  },
+  {
+    "name": "Hiking",
+    "category": "outdoor",
+    "intensity": "low",
+    "image": "https://www.pcta.org/wp-content/uploads/2015/12/how-many-people-hike-the-pacific-crest-trail.jpg"
+  },
+  {
+    "name": "Yoga (Vinyasa)",
+    "category": "mind-body",
+    "intensity": "low",
+    "image": "https://geopelie.com/cdn/shop/articles/jeune_femme_dans_une_posture_de_yoga_d_equilibre_751a6cdc-721b-40f1-a5ec-e78eac1cb908.jpg?v=1737467862"
+  },
+  {
+    "name": "Yoga (Power)",
+    "category": "mind-body",
+    "intensity": "medium",
+    "image": "https://res.cloudinary.com/peloton-cycle/image/fetch/f_auto,c_limit,w_3840,q_90/https://images.ctfassets.net/6ilvqec50fal/3h4A0qg1T03udrLfwT7g76/8dfe501f0e268cf77ead81b962929bd3/yoga-before-or-after-workout-02.jpg"
+  },
+  {
+    "name": "Pilates",
+    "category": "mind-body",
+    "intensity": "low",
+    "image": "https://www.thirdspace.london/wp-content/uploads/2024/10/benefits-pilates.jpg"
+  },
+  {
+    "name": "Golf",
+    "category": "precision",
+    "intensity": "low",
+    "image": "https://imgsrv2.voi.id/r6MeMnCUUUv4jhcCFH43rXL3_UQYbrgHWEZTANXr6TI/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yNDczMDIvMjAyMzAxMjQxNjE3LW1haW4uY3JvcHBlZF8xNjc0NzIxMzkzLmpwZw.jpg"
+  },
+  {
+    "name": "Archery",
+    "category": "precision",
+    "intensity": "low",
+    "image": "https://s3.springbeetle.com/prod-us-bucket/trantor/attachments/USFM/old/media/magefan_blog/2022/03/Depositphotos_12428241_XL-1024x683.jpg"
+  },
+  {
+    "name": "Fencing",
+    "category": "combat",
+    "intensity": "medium",
+    "image": "https://www.fisu.net/app/uploads/2023/09/fencing.jpg"
+  },
+  {
+    "name": "Surfing",
+    "category": "board",
+    "intensity": "medium",
+    "image": "https://lapoint.b-cdn.net/image/4qxBb6Nw4NARuV8AUDXZn6/1c594f817ac1aa69e81d8c07bfa90c0e/massive_waves.jpg?fm=jpg&fl=progressive&w=1920&q=75"
+  }
 ]
