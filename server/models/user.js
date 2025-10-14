@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be at least 6 characters long'
         }
       }
+    },
+    isMembership: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     hooks: {

@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Exercise.init({
     name: DataTypes.STRING,
     category: DataTypes.STRING,
-    intensity: DataTypes.STRING
+    intensity: DataTypes.STRING,
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Exercise',
