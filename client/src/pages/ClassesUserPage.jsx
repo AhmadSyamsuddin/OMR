@@ -1,35 +1,21 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserClasses } from "../store/userClassesSlice";
 import UserClassList from '../components/UserClassList';
 import { NavLink } from 'react-router';
 
 export default function ClassesUserPage() {
-  const [classes, setClasses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  async function fetchClasses() {
-    try {
-      const { data } = await axios.get("http://localhost:3000/workout-classes-user", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-      setClasses(data.classes || []);
-    } catch (error) {
-      console.error("Error fetching classes:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const handleDeleteSuccess = (deletedId) => {
-    // Remove deleted class from state
-    setClasses((prevClasses) =>
-      prevClasses.filter((item) => item.WorkoutClass.id !== deletedId)
-    );
-  };
+  const dispatch = useDispatch();
+  const { items: classes, loading, error } = useSelector((state) => state.userClasses);
 
   useEffect(() => {
-    fetchClasses();
-  }, []);
+    dispatch(fetchUserClasses());
+  }, [dispatch]);
+
+  const handleDeleteSuccess = (deletedId) => {
+    // Redux will automatically update the state after delete
+    console.log("Class deleted successfully:", deletedId);
+  };
 
   return (
     <div className="bg-black min-vh-100 py-5">
@@ -37,9 +23,9 @@ export default function ClassesUserPage() {
         {/* Header + Page Nav */}
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
           <div>
-            <h1 className="text-white fw-semibold m-0">Workout Classes</h1>
+            <h1 className="text-white fw-semibold m-0">My Classes</h1>
             <small className="text-secondary">
-              Browse all available sessions
+              Classes you have joined
             </small>
           </div>
           <div className="mt-3 mt-md-0 d-flex gap-2">
@@ -62,10 +48,18 @@ export default function ClassesUserPage() {
             </NavLink>
           </div>
         </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="alert alert-danger mb-4" role="alert">
+            {error}
+          </div>
+        )}
+
         {loading ? (
           <div className="text-center text-secondary py-5">
             <div className="spinner-border text-light mb-3" role="status" />
-            <div>Loading classes…</div>
+            <div>Loading your classes…</div>
           </div>
         ) : (
           <div className="row g-4">
@@ -80,7 +74,13 @@ export default function ClassesUserPage() {
               ))
             ) : (
               <div className="text-center text-secondary py-5 w-100">
-                No classes found.
+                <div className="mb-3">
+                  <i className="bi bi-calendar-x" style={{ fontSize: "3rem", opacity: 0.5 }}></i>
+                </div>
+                <p>You haven't joined any classes yet.</p>
+                <NavLink to="/classes" className="btn btn-danger mt-2">
+                  Browse Classes
+                </NavLink>
               </div>
             )}
           </div>

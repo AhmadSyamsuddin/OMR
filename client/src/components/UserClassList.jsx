@@ -1,18 +1,44 @@
-import axios from 'axios';
-import React from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserClass, clearError, clearDeleteSuccess } from "../store/userClassesSlice";
+import { toast } from "react-toastify";
 
 export default function UserClassList({ classItem, onDeleteSuccess }) {
-  const handleDelete = async(e) => {
-    e.preventDefault();
-    try {
-      await axios.delete(`http://localhost:3000/workout-classes/${classItem.id}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+  const dispatch = useDispatch();
+  const { deleteLoading, error, deleteSuccess } = useSelector((state) => state.userClasses);
+
+  useEffect(() => {
+    if (deleteSuccess) {
+      // Just clear state, no toast
+      dispatch(clearDeleteSuccess());
+      
       if (onDeleteSuccess) {
         onDeleteSuccess(classItem.id);
       }
+    }
+  }, [deleteSuccess, dispatch, onDeleteSuccess, classItem.id]);
+
+  useEffect(() => {
+    if (error) {
+      toast.dismiss();
+      toast.error(error || "Failed to leave class", {
+        toastId: `delete-error-${Date.now()}`,
+      });
+      
+      dispatch(clearError());
+    }
+  }, [error, dispatch]);
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!window.confirm(`Are you sure you want to leave "${classItem.name}"?`)) {
+      return;
+    }
+    
+    try {
+      await dispatch(deleteUserClass(classItem.id)).unwrap();
     } catch (error) {
       console.error("Error deleting class:", error);
     }
@@ -50,8 +76,21 @@ export default function UserClassList({ classItem, onDeleteSuccess }) {
             <button
               onClick={handleDelete}
               className="btn btn-danger fw-semibold px-3 py-1 join-btn"
+              disabled={deleteLoading}
+              style={{ 
+                position: 'relative', 
+                zIndex: 10,
+                pointerEvents: 'auto'
+              }}
             >
-              Delete Class
+              {deleteLoading ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Leaving...
+                </>
+              ) : (
+                "Leave Class"
+              )}
             </button>
           </div>
         </div>

@@ -1,24 +1,15 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPrograms } from "../store/programsSlice";
 import ProgramCard from "../components/ProgramCard";
 
 export default function ProgramsPage() {
-  const [programs, setPrograms] = useState([]);
-
-  async function fetchPrograms() {
-    try {
-      const { data } = await axios.get("http://localhost:3000/exercises", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-      setPrograms(data.exercises);
-    } catch (error) {
-      console.error("Error fetching programs:", error);
-    }
-  }
+  const dispatch = useDispatch();
+  const { items: programs, loading } = useSelector((state) => state.programs);
 
   useEffect(() => {
-    fetchPrograms();
-  }, []);
+    dispatch(fetchPrograms());
+  }, [dispatch]);
 
   return (
     <div className="bg-black min-vh-100">

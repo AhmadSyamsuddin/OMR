@@ -1,68 +1,52 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
-import axios from "axios";
-// import HomePage.css
+import { fetchUser } from "../store/userSlice";
+import { generatePaymentToken, clearError } from "../store/paymentSlice";
+import { toast } from "react-toastify";
 import "../HomePage.css";
 
-
 export default function HomePage() {
-  const [isMembership, setIsMembership] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { isMembership, loading: userLoading } = useSelector((state) => state.user);
+  const { loading: paymentLoading, error: paymentError } = useSelector((state) => state.payment);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const { data } = await axios.get("http://localhost:3000/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setIsMembership(data.isMembership);
-      } catch (error) {
-        console.log(error, "<<< error fetching user data");
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(fetchUser());
+  }, [dispatch]);
 
-    fetchUserData();
-  }, []);
+  useEffect(() => {
+    if (paymentError) {
+      toast.error(paymentError || "Payment initialization failed");
+      dispatch(clearError());
+    }
+  }, [paymentError, dispatch]);
 
   const handleSubscribe = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const { data } = await axios.post(
-        "http://localhost:3000/payment/generate-token",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      const result = await dispatch(generatePaymentToken()).unwrap();
+      if (result.token) {
+        window.snap.pay(result.token, {
+          onSuccess: function(result) {
+            toast.success("Payment successful! 🎉");
+            console.log('success', result);
           },
-        }
-      );
-
-      // Redirect to Midtrans payment page
-      window.snap.pay(data.token, {
-        onSuccess: function (result) {
-          console.log("Payment success:", result);
-          // Refresh user data to update membership status
-          window.location.reload();
-        },
-        onPending: function (result) {
-          console.log("Payment pending:", result);
-        },
-        onError: function (result) {
-          console.log("Payment error:", result);
-          alert("Payment failed. Please try again.");
-        },
-        onClose: function () {
-          console.log("Payment popup closed");
-        },
-      });
+          onPending: function(result) {
+            toast.info("Payment pending, please complete the payment");
+            console.log('pending', result);
+          },
+          onError: function(result) {
+            toast.error("Payment failed, please try again");
+            console.log('error', result);
+          },
+          onClose: function() {
+            toast.warning("Payment cancelled");
+            console.log('customer closed the popup without finishing the payment');
+          }
+        });
+      }
     } catch (error) {
-      console.log(error, "<<< error generating payment token");
-      alert("Failed to initiate payment. Please try again.");
+      console.error("Payment error:", error);
     }
   };
 
@@ -70,7 +54,6 @@ export default function HomePage() {
     <div className="home-hero min-vh-100 d-flex align-items-center">
       <div className="container py-5">
         <div className="home-overlay rounded-4 p-4 p-md-5">
-          {/* Headline */}
           <div className="mb-4 text-center text-md-start">
             <h1 className="text-white fw-semibold m-0">Elevate Your Training</h1>
             <small className="text-secondary">
@@ -78,7 +61,6 @@ export default function HomePage() {
             </small>
           </div>
 
-          {/* Cards */}
           <div className="row g-3 g-md-4">
             <div className="col-12 col-md-6">
               {isMembership ? (
@@ -95,31 +77,45 @@ export default function HomePage() {
                   </div>
                 </NavLink>
               ) : (
-                <div
-                  className="text-decoration-none d-block"
-                  style={{ cursor: "default", opacity: loading ? 0.5 : 1 }}
-                >
-                  <div className="card-section card-classes position-relative rounded-4 overflow-hidden shadow border" style={{ opacity: 0.5, filter: "grayscale(50%)" }}>
+                <div className="text-decoration-none d-block position-relative">
+                  <div
+                    className="card-section card-classes position-relative rounded-4 overflow-hidden shadow border"
+                    style={{ opacity: 0.5, filter: "grayscale(50%)" }}
+                  >
                     <div className="card-overlay position-absolute top-0 start-0 w-100 h-100">
                       <div className="position-absolute bottom-0 start-0 end-0 p-4 p-md-5">
                         <h2 className="text-white fw-semibold mb-1">Workout Classes</h2>
                         <p className="text-secondary mb-0">
                           Coach-led sessions • Fixed schedules • Team energy
                         </p>
-                        <div className="d-flex align-items-center gap-2 mt-3">
-                          <span className="badge bg-warning text-dark">
-                            Membership Required
-                          </span>
-                          <button
-                            className="btn btn-primary btn-sm"
-                            onClick={handleSubscribe}
-                            disabled={loading}
-                          >
-                            Subscribe Now
-                          </button>
-                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div
+                    className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+                    style={{
+                      background: "rgba(0,0,0,0.7)",
+                      zIndex: 5,
+                      borderRadius: 16,
+                    }}
+                  >
+                    <span className="badge bg-warning text-dark mb-2">
+                      Membership Required
+                    </span>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={handleSubscribe}
+                      disabled={userLoading || paymentLoading}
+                    >
+                      {paymentLoading ? (
+                        <>
+                          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                          Processing...
+                        </>
+                      ) : (
+                        "Subscribe Now"
+                      )}
+                    </button>
                   </div>
                 </div>
               )}
@@ -132,7 +128,7 @@ export default function HomePage() {
                     <div className="position-absolute bottom-0 start-0 end-0 p-4 p-md-5">
                       <h2 className="text-white fw-semibold mb-1">Workout Programs</h2>
                       <p className="text-secondary mb-0">
-                        AI-tailored plans • Weekly structure 
+                        AI-tailored plans • Weekly structure
                       </p>
                     </div>
                   </div>

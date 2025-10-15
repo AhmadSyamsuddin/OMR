@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser, logout } from "../store/userSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isMembership, setIsMembership] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  const dispatch = useDispatch();
+  const { isMembership, loading } = useSelector((state) => state.user);
 
   // Initial fetch and event listener setup
   useEffect(() => {
-    fetchUserData();
+    dispatch(fetchUser());
 
     // Listen for membership update event
     const handleMembershipUpdate = () => {
       console.log("Membership update event received");
-      fetchUserData();
+      dispatch(fetchUser());
     };
 
     window.addEventListener("membershipUpdated", handleMembershipUpdate);
@@ -24,40 +24,17 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("membershipUpdated", handleMembershipUpdate);
     };
-  }, []);
+  }, [dispatch]);
 
-  // Re-fetch user data when route changes (but not on initial load)
+  // Re-fetch user data when route changes
   useEffect(() => {
-    if (prevPathname !== location.pathname) {
-      console.log("Route changed, refetching user data");
-      fetchUserData();
-      setPrevPathname(location.pathname);
-    }
-  }, [location.pathname, prevPathname]);
-
-  const fetchUserData = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      console.log("Fetched user data:", data); // Debug log
-      setIsMembership(data.isMembership);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    console.log("Route changed, refetching user data");
+    dispatch(fetchUser());
+  }, [location.pathname, dispatch]);
 
   const handleLogout = (event) => {
     event.preventDefault();
-    localStorage.removeItem("token");
+    dispatch(logout());
     navigate("/login");
   };
 

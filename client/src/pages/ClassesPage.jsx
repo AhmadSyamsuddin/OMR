@@ -1,28 +1,16 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchClasses } from "../store/classesSlice";
 import { NavLink } from "react-router";
 import ClassList from "../components/ClassList";
 
 export default function ClassesPage() {
-  const [classes, setClasses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  async function fetchClasses() {
-    try {
-      const { data } = await axios.get("http://localhost:3000/workout-classes", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-      setClasses(data.classes || []);
-    } catch (error) {
-      console.error("Error fetching classes:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const dispatch = useDispatch();
+  const { items: classes, loading, error } = useSelector((state) => state.classes);
 
   useEffect(() => {
-    fetchClasses();
-  }, []);
+    dispatch(fetchClasses());
+  }, [dispatch]);
 
   return (
     <div className="bg-black min-vh-100 py-5">
@@ -36,7 +24,7 @@ export default function ClassesPage() {
             </small>
           </div>
 
-        {/* Pindah halaman, bukan tab */}
+          {/* Pindah halaman, bukan tab */}
           <div className="mt-3 mt-md-0 d-flex gap-2">
             <NavLink
               to="/classes"
@@ -57,6 +45,13 @@ export default function ClassesPage() {
             </NavLink>
           </div>
         </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="alert alert-danger mb-4" role="alert">
+            {error}
+          </div>
+        )}
 
         {/* List */}
         {loading ? (

@@ -1,25 +1,40 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser, clearError } from "../store/userSlice";
 import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
+
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Handle error
+  useEffect(() => {
+    if (error) {
+      toast.dismiss();
+      toast.error(error || "Registration failed");
+      dispatch(clearError());
+    }
+  }, [error, dispatch]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      await axios.post("http://localhost:3000/register", {
-        fullName,
-        email,
-        password,
-      });
-
+      await dispatch(registerUser({ fullName, email, password })).unwrap();
+      
+      toast.dismiss();
+      toast.success("Registration successful! Please login to continue.");
+      
+      // Redirect to login
       navigate("/login");
     } catch (error) {
-      console.log(error, "<<< error register");
+      console.error("Registration error:", error);
     }
   };
 
@@ -33,9 +48,7 @@ export default function RegisterPage() {
           <div className="col-12 col-md-6 p-4 p-md-5">
             <div className="mb-4">
               <h2 className="fw-semibold text-white m-0">Create account</h2>
-              <small className="text-secondary">
-                Please enter your details.
-              </small>
+              <small className="text-secondary">Please enter your details.</small>
             </div>
 
             <form onSubmit={handleSubmit} className="text-white">
@@ -78,12 +91,20 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 className="btn btn-light w-100 py-2 border border-secondary"
+                disabled={loading}
               >
-                Sign Up
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Creating...
+                  </>
+                ) : (
+                  "Sign Up"
+                )}
               </button>
 
               <div className="d-flex justify-content-between align-items-center mt-3">
-                <p>
+                <p className="mb-0 text-secondary">
                   Already have an account?{" "}
                   <Link to="/login" className="link-light link-underline-opacity-0">
                     Log In
@@ -97,13 +118,11 @@ export default function RegisterPage() {
             style={{
               backgroundColor: "#111",
               minHeight: 420,
-              backgroundImage: `url("https://row.gymshark.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F8urtyqugdt2l%2F7DjCv2aBaPIABZ9wosGvJk%2F0d693d9d04fae848feac8779289e2d3c%2Fmobile-leg-exercises.jpg&w=3840&q=85")`,
+              backgroundImage: `url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800")`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          >
-            <img src="./logo.png" alt="" />
-          </div>
+          ></div>
         </div>
       </div>
     </div>

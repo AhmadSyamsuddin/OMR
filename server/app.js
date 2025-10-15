@@ -7,6 +7,7 @@ const authentication = require('./middlewares/authentication');
 const app = express();
 const WorkoutClassController = require('./controllers/WorkoutController');
 const PaymentController = require('./controllers/PaymentController');
+const GeminiController = require('./controllers/GeminiController');
 const cors = require('cors');
 
 app.use(cors());
@@ -44,6 +45,9 @@ app.patch('/memberships', UserController.updateMembership);
 // Payment - Midtrans
 app.post('/payment/generate-token', PaymentController.generateToken);
 app.get('/payment/status/:orderId', PaymentController.checkPaymentStatus);
+
+// Gemini AI
+app.post('/generate-workout-plan', GeminiController.generateWorkoutPlan);
 
 app.use(errorHandler)
 

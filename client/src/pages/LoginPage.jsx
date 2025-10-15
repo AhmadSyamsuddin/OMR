@@ -1,19 +1,20 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, clearError } from "../store/userSlice";
 import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import api from "../api/axios";
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading, error, token } = useSelector((state) => state.user);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
 
-  // redirect kalau sudah login
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) navigate("/");
-  }, [navigate]);
-
-  // init Google
+  // Initialize Google Sign-In
   useEffect(() => {
     if (window.google) {
       window.google.accounts.id.initialize({
@@ -21,41 +22,68 @@ export default function LoginPage() {
         callback: handleGoogleLogin,
       });
 
-      // pastikan wrapper ada & full width
       const btn = document.getElementById("googleSignInButton");
       if (btn) {
         window.google.accounts.id.renderButton(btn, {
           theme: "filled_black",
-          size: "large", // small | medium | large
+          size: "large",
         });
       }
     }
   }, []);
 
+  // Handle error
+  useEffect(() => {
+    if (error) {
+      toast.dismiss();
+      toast.error(error || "Login failed");
+      dispatch(clearError());
+    }
+  }, [error, dispatch]);
+
+  // Handle successful login redirect
+  useEffect(() => {
+    if (isLoginSuccess && token) {
+      toast.dismiss();
+      toast.success("Login successful! Welcome back!");
+      navigate("/", { replace: true });
+    }
+  }, [isLoginSuccess, token, navigate]);
+
   const handleGoogleLogin = async (response) => {
     try {
       const { credential } = response;
-      const result = await axios.post("http://localhost:3000/google-login", {
+      const result = await api.post("/google-login", {
         googleToken: credential,
       });
+
+      // Save token to localStorage
       localStorage.setItem("token", result.data.access_token);
-      navigate("/");
+
+      // Trigger redirect
+      setIsLoginSuccess(true);
+
+      // Small delay to ensure state is updated
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 100);
     } catch (error) {
-      console.log(error, "<<< error Google login");
+      toast.dismiss();
+      toast.error("Google login failed. Please try again.");
+      console.error("Error Google login:", error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const { data } = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
-      localStorage.setItem("token", data.access_token);
-      navigate("/");
+      await dispatch(loginUser({ email, password })).unwrap();
+
+      // Set flag to trigger redirect
+      setIsLoginSuccess(true);
     } catch (error) {
-      console.log(error, "<<< error login");
+      console.error("Login error:", error);
     }
   };
 
@@ -66,7 +94,6 @@ export default function LoginPage() {
           className="row g-0 rounded-4 overflow-hidden shadow"
           style={{ backgroundColor: "#0b0b0b", border: "1px solid #1f1f1f" }}
         >
-          {/* Left: Form */}
           <div className="col-12 col-md-6 p-4 p-md-5">
             <div className="mb-4">
               <h2 className="fw-semibold text-white m-0">Welcome Back</h2>
@@ -102,19 +129,25 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="btn btn-light w-100 py-2 border border-secondary"
+                className="btn btn-light w-100 py-2 border border-secondary mt-3"
+                disabled={loading}
               >
-                Log In
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Logging in...
+                  </>
+                ) : (
+                  "Log In"
+                )}
               </button>
 
-              {/* Divider */}
               <div className="d-flex align-items-center my-3">
                 <div className="flex-grow-1 border-top border-secondary"></div>
                 <span className="mx-3 text-secondary small">or</span>
                 <div className="flex-grow-1 border-top border-secondary"></div>
               </div>
 
-              {/* Google Button Wrapper (full width) */}
               <div id="googleSignInButton" className="w-100 d-grid mb-2" />
 
               <div className="d-flex justify-content-between align-items-center mt-3">
@@ -153,17 +186,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      {/* <style>{`
-        #googleSignInButton > div {
-          width: 100% !important;
-        }
-        #googleSignInButton > div > div {
-          width: 100% !important;
-        }
-        #googleSignInButton iframe {
-          width: 100% !important;
-        }
-      `}</style> */}
     </div>
   );
 }

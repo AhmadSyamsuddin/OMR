@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../store/userSlice";
+import api from "../api/axios";
 
 export default function PaymentSuccessPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [status, setStatus] = useState("checking");
   const [message, setMessage] = useState("Verifying your payment...");
 
@@ -22,14 +25,7 @@ export default function PaymentSuccessPage() {
 
       try {
         // Check payment status from backend
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/payment/status/${orderId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const { data } = await api.get(`/payment/status/${orderId}`);
 
         if (
           data.transaction_status === "settlement" ||
@@ -42,27 +38,12 @@ export default function PaymentSuccessPage() {
           const verifyAndUpdate = async () => {
             try {
               // First, manually update membership status (fallback for local development when webhook might not work)
-              await axios.patch(
-                `${import.meta.env.VITE_BASE_URL}/memberships`,
-                {},
-                {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                }
-              );
+              await api.patch("/memberships", {});
 
               // Check if user's membership is actually updated
-              const { data: userData } = await axios.get(
-                `${import.meta.env.VITE_BASE_URL}/user`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                }
-              );
+              await dispatch(fetchUser()).unwrap();
 
-              console.log("Verified user membership:", userData.isMembership);
+              console.log("Verified user membership");
 
               // Trigger membership update event for Navbar
               window.dispatchEvent(new Event("membershipUpdated"));
@@ -98,7 +79,7 @@ export default function PaymentSuccessPage() {
     };
 
     checkPayment();
-  }, [searchParams, navigate]);
+  }, [searchParams, navigate, dispatch]);
 
   const getStatusIcon = () => {
     if (status === "success") {
