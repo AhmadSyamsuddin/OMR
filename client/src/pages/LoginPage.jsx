@@ -10,11 +10,11 @@ export default function LoginPage() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-        await axios.post("http://localhost:3000/login",{
+        const response = await axios.post("http://localhost:3000/login",{
             email,
             password
         });
-
+        localStorage.setItem("token", response.data.access_token);
         navigate("/");
     } catch (error) {
         console.log(error,"<<< error login")

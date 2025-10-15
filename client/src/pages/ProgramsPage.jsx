@@ -1,28 +1,51 @@
-import axios from 'axios';
-import React, { useEffect } from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import ProgramCard from "../components/ProgramCard";
 
 export default function ProgramsPage() {
-    const [programs, setPrograms] = React.useState([]);
+  const [programs, setPrograms] = useState([]);
 
-    async function fetchPrograms() {
-        try {
-            const response = await axios.get('http://localhost:3000/exercises', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            });
-            console.log(response.data);
-            
-            setPrograms(response.data);
-        } catch (error) {
-            console.error("Error fetching programs:", error);
-        }
+  async function fetchPrograms() {
+    try {
+      const { data } = await axios.get("http://localhost:3000/exercises", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      // asumsi response.data.exercises adalah array
+      setPrograms(data.exercises || []);
+    } catch (error) {
+      console.error("Error fetching programs:", error);
     }
+  }
 
-    useEffect(() => {
-        fetchPrograms();
-    }, []);
+  useEffect(() => {
+    fetchPrograms();
+  }, []);
+
   return (
-    <div>ProgramsPage</div>
-  )
+    <div className="bg-black min-vh-100">
+      <div className="container py-5" style={{ maxWidth: 1200 }}>
+        <div className="mb-4 text-center text-md-start">
+          <h1 className="text-white fw-semibold m-0">Workout Programs</h1>
+          <small className="text-secondary">
+            AI-tailored plans • Weekly structure • Track progress
+          </small>
+        </div>
+
+        <div className="row g-3 g-md-4">
+          {programs.map((program) => (
+            <div key={program.id || program.name} className="col-12 col-sm-6 col-lg-4">
+              <ProgramCard program={program} />
+            </div>
+          ))}
+        </div>
+
+        {programs.length === 0 && (
+          <div className="text-center py-5">
+            <div className="spinner-border text-light mb-3" role="status" />
+            <p className="text-secondary m-0">Loading programs…</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
