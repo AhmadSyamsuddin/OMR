@@ -1,0 +1,46 @@
+/* background utama */
+.home-hero {
+  background: url("https://www.shutterstock.com/image-illustration/gym-weights-under-strong-dramatic-600nw-472696720.jpg")
+    center/cover no-repeat;
+}
+
+/* overlay transparan di tengah */
+.home-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+/* card umum */
+.card-section {
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+  border-color: #1f1f1f !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* gambar card */
+.card-classes {
+  background-image: url("https://hips.hearstapps.com/hmg-prod/images/cross-training-royalty-free-image-1589836587.jpg");
+}
+
+.card-programs {
+  background-image: url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1460&auto=format&fit=crop");
+}
+
+/* gradient overlay */
+.card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.65) 70%
+  );
+}
+
+/* efek hover */
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.35) !important;
+  border-color: #e50914 !important;
+}

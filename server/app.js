@@ -6,6 +6,9 @@ const ExerciseController = require('./controllers/ExerciseController');
 const authentication = require('./middlewares/authentication');
 const app = express();
 const WorkoutClassController = require('./controllers/WorkoutController');
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
