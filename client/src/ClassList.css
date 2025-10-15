@@ -1,0 +1,32 @@
+.class-background {
+  background-size: cover;
+  background-position: center;
+  min-height: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #1f1f1f !important;
+}
+
+.class-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.8) 85%
+  );
+}
+
+.class-card:hover .class-background {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.35) !important;
+  border-color: #e50914 !important;
+}
+
+/* Judul & teks */
+.class-card h5 {
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.class-card p {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}

@@ -6,6 +6,10 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const token = localStorage.getItem("token");
+  if (token) {
+      navigate("/"); 
+  }
 
   const handleSubmit = async(e) => {
     e.preventDefault();

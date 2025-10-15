@@ -10,8 +10,7 @@ export default function ProgramsPage() {
       const { data } = await axios.get("http://localhost:3000/exercises", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      // asumsi response.data.exercises adalah array
-      setPrograms(data.exercises || []);
+      setPrograms(data.exercises);
     } catch (error) {
       console.error("Error fetching programs:", error);
     }
