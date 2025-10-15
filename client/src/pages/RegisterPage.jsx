@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -85,9 +85,9 @@ export default function RegisterPage() {
               <div className="d-flex justify-content-between align-items-center mt-3">
                 <p>
                   Already have an account?{" "}
-                  <a href="#" className="link-light link-underline-opacity-0">
+                  <Link to="/login" className="link-light link-underline-opacity-0">
                     Log In
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

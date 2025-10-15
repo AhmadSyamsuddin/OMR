@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import ProgramsPage from "./pages/ProgramsPage";
 import ClassesPage from "./pages/ClassesPage";
 import ClassesUserPage from "./pages/ClassesUserPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 
 function Layout() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/programs" element={<ProgramsPage />} />
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/classes/joined" element={<ClassesUserPage />} />
+          <Route path="/payment/success" element={<PaymentSuccessPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

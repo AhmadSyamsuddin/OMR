@@ -1,27 +1,61 @@
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const token = localStorage.getItem("token");
-  if (token) {
-      navigate("/"); 
-  }
 
-  const handleSubmit = async(e) => {
+  // redirect kalau sudah login
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) navigate("/");
+  }, [navigate]);
+
+  // init Google
+  useEffect(() => {
+    if (window.google) {
+      window.google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        callback: handleGoogleLogin,
+      });
+
+      // pastikan wrapper ada & full width
+      const btn = document.getElementById("googleSignInButton");
+      if (btn) {
+        window.google.accounts.id.renderButton(btn, {
+          theme: "filled_black",
+          size: "large", // small | medium | large
+        });
+      }
+    }
+  }, []);
+
+  const handleGoogleLogin = async (response) => {
+    try {
+      const { credential } = response;
+      const result = await axios.post("http://localhost:3000/google-login", {
+        googleToken: credential,
+      });
+      localStorage.setItem("token", result.data.access_token);
+      navigate("/");
+    } catch (error) {
+      console.log(error, "<<< error Google login");
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post("http://localhost:3000/login",{
-            email,
-            password
-        });
-        localStorage.setItem("token", response.data.access_token);
-        navigate("/");
+      const { data } = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", data.access_token);
+      navigate("/");
     } catch (error) {
-        console.log(error,"<<< error login")
+      console.log(error, "<<< error login");
     }
   };
 
@@ -54,7 +88,7 @@ export default function LoginPage() {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="form-label text-secondary">Password</label>
                 <input
                   type="password"
@@ -73,12 +107,22 @@ export default function LoginPage() {
                 Log In
               </button>
 
+              {/* Divider */}
+              <div className="d-flex align-items-center my-3">
+                <div className="flex-grow-1 border-top border-secondary"></div>
+                <span className="mx-3 text-secondary small">or</span>
+                <div className="flex-grow-1 border-top border-secondary"></div>
+              </div>
+
+              {/* Google Button Wrapper (full width) */}
+              <div id="googleSignInButton" className="w-100 d-grid mb-2" />
+
               <div className="d-flex justify-content-between align-items-center mt-3">
                 <p className="m-0">
-                  Don’t have an account?{" "}
-                  <a href="#" className="link-light link-underline-opacity-0">
+                  Don't have an account?{" "}
+                  <Link to={"/register"} className="link-light link-underline-opacity-0">
                     Sign Up
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>
@@ -93,10 +137,33 @@ export default function LoginPage() {
               backgroundPosition: "center",
             }}
           >
-            <img src="./logo.png" alt="Brand Logo" />
+            <img
+              src="./logo.png"
+              alt="Brand Logo"
+              className="position-absolute end-0 top-0 m-3"
+              style={{
+                width: 100,
+                height: "auto",
+                backdropFilter: "blur(6px)",
+                backgroundColor: "rgba(0,0,0,0.3)",
+                borderRadius: 8,
+                padding: "4px 8px",
+              }}
+            />
           </div>
         </div>
       </div>
+      {/* <style>{`
+        #googleSignInButton > div {
+          width: 100% !important;
+        }
+        #googleSignInButton > div > div {
+          width: 100% !important;
+        }
+        #googleSignInButton iframe {
+          width: 100% !important;
+        }
+      `}</style> */}
     </div>
   );
 }

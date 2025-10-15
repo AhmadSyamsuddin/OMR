@@ -1,8 +1,60 @@
-import React from "react";
-import { useNavigate, Link } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link, useLocation } from "react-router";
+import axios from "axios";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isMembership, setIsMembership] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+
+  // Initial fetch and event listener setup
+  useEffect(() => {
+    fetchUserData();
+
+    // Listen for membership update event
+    const handleMembershipUpdate = () => {
+      console.log("Membership update event received");
+      fetchUserData();
+    };
+
+    window.addEventListener("membershipUpdated", handleMembershipUpdate);
+
+    return () => {
+      window.removeEventListener("membershipUpdated", handleMembershipUpdate);
+    };
+  }, []);
+
+  // Re-fetch user data when route changes (but not on initial load)
+  useEffect(() => {
+    if (prevPathname !== location.pathname) {
+      console.log("Route changed, refetching user data");
+      fetchUserData();
+      setPrevPathname(location.pathname);
+    }
+  }, [location.pathname, prevPathname]);
+
+  const fetchUserData = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log("Fetched user data:", data); // Debug log
+      setIsMembership(data.isMembership);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
@@ -33,24 +85,56 @@ export default function Navbar() {
           </span>
         </Link>
         <div className="d-flex align-items-center gap-3">
-          <div
-            className="d-flex align-items-center gap-2 px-3 py-1 rounded-pill"
-            style={{
-              backgroundColor: "#1a1a1a",
-              border: "1px solid #2a2a2a",
-              color: "#bbb",
-              fontWeight: 500,
-              fontSize: "0.9rem",
-              letterSpacing: "0.3px",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <i
-              className="bi bi-lightning-charge-fill"
-              style={{ color: "#e50914", fontSize: "1rem" }}
-            ></i>
-            <span>Regular</span>
-          </div>
+          {loading ? (
+            <div
+              className="d-flex align-items-center gap-2 px-3 py-1 rounded-pill"
+              style={{
+                backgroundColor: "#1a1a1a",
+                border: "1px solid #2a2a2a",
+                color: "#666",
+              }}
+            >
+              <div
+                className="spinner-border spinner-border-sm"
+                role="status"
+                style={{ width: "14px", height: "14px" }}
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <span style={{ fontSize: "0.9rem" }}>Loading...</span>
+            </div>
+          ) : (
+            <div
+              className="d-flex align-items-center gap-2 px-3 py-1 rounded-pill"
+              style={{
+                backgroundColor: isMembership ? "#1a1a1a" : "#1a1a1a",
+                border: isMembership
+                  ? "1px solid rgba(255, 215, 0, 0.3)"
+                  : "1px solid #2a2a2a",
+                color: isMembership ? "#ffd700" : "#bbb",
+                fontWeight: 500,
+                fontSize: "0.9rem",
+                letterSpacing: "0.3px",
+                transition: "all 0.3s ease",
+                boxShadow: isMembership
+                  ? "0 0 20px rgba(255, 215, 0, 0.15)"
+                  : "none",
+              }}
+            >
+              <i
+                className={
+                  isMembership
+                    ? "bi bi-star-fill"
+                    : "bi bi-lightning-charge-fill"
+                }
+                style={{
+                  color: isMembership ? "#ffd700" : "#e50914",
+                  fontSize: "1rem",
+                }}
+              ></i>
+              <span>{isMembership ? "Premium" : "Regular"}</span>
+            </div>
+          )}
           <button
             onClick={handleLogout}
             className="btn btn-light py-1 px-3"
