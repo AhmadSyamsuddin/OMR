@@ -27,6 +27,7 @@ app.get('/exercises', ExerciseController.getAllExercises);
 
 // WorkoutClass
 app.get('/workout-classes', WorkoutClassController.getAllWorkoutClasses);
+app.get('/workout-classes-user', WorkoutClassController.getAllWorkoutClassesbyUserId);
 app.post('/workout-classes/:classId', WorkoutClassController.createWorkoutClass);
 app.delete('/workout-classes/:classId', WorkoutClassController.deleteWorkoutClass);
 

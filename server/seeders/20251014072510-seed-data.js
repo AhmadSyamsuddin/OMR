@@ -17,6 +17,7 @@ module.exports = {
     let workoutClass = require('../data/workoutclass.json');
     workoutClass = workoutClass.map(wc => ({
       ...wc,
+      currentQuota: wc.currentQuota || 0,
       createdAt: new Date(),
       updatedAt: new Date()
     }));

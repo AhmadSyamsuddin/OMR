@@ -1,20 +1,20 @@
-import "../ClassList.css";
-import axios from "axios";
-import { useNavigate } from "react-router";
+import axios from 'axios';
+import React from 'react'
 
-export default function ClassList({ classItem }) {
-  const navigate = useNavigate();
-  const handleJoin = async(e) => {
+export default function UserClassList({ classItem, onDeleteSuccess }) {
+  const handleDelete = async(e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `http://localhost:3000/workout-classes/${classItem.id}`,
-        {},
-        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+      await axios.delete(`http://localhost:3000/workout-classes/${classItem.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
-      navigate("/classes/joined");
+      if (onDeleteSuccess) {
+        onDeleteSuccess(classItem.id);
+      }
     } catch (error) {
-      console.error("Error joining class:", error);
+      console.error("Error deleting class:", error);
     }
   };
 
@@ -28,7 +28,6 @@ export default function ClassList({ classItem }) {
       >
         <div className="class-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
-        {/* Content */}
         <div className="position-absolute bottom-0 start-0 end-0 p-4">
           <h5 className="fw-bold mb-2 text-uppercase">{classItem.name}</h5>
 
@@ -49,10 +48,10 @@ export default function ClassList({ classItem }) {
           </p>
           <div className="d-flex justify-content-end">
             <button
-              onClick={handleJoin}
+              onClick={handleDelete}
               className="btn btn-danger fw-semibold px-3 py-1 join-btn"
             >
-              Join Class
+              Delete Class
             </button>
           </div>
         </div>

@@ -20,13 +20,41 @@
   border-color: #e50914 !important;
 }
 
-/* Judul & teks */
+/* Typography & highlight */
 .class-card h5 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .class-card p {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.coach-name {
+  color: #f6ff00;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover .coach-name {
+  color: #ff2b2b;
+  text-shadow: 0 0 15px rgba(255, 50, 50, 0.6);
+}
+
+/* Join button */
+.join-btn {
+  background-color: #e50914;
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.join-btn:hover {
+  background-color: #ff2b2b;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.5);
+  transform: translateY(-2px);
 }

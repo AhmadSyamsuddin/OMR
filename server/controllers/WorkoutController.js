@@ -40,6 +40,20 @@ class WorkoutClassController {
       next(error);
     }
   }
+
+  static async getAllWorkoutClassesbyUserId(req, res, next) {
+    try {
+      const { id } = req.user;
+      const userClasses = await User_WorkoutClass.findAll({
+        where: { UserId: id },
+        include: [WorkoutClass]
+      });
+      res.status(200).json({ classes: userClasses });
+    } catch (error) {
+      next(error);
+    }
+  }
+
 }
 
 module.exports = WorkoutClassController;

@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
 import ProgramsPage from "./pages/ProgramsPage";
 import ClassesPage from "./pages/ClassesPage";
+import ClassesUserPage from "./pages/ClassesUserPage";
 
 function Layout() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/programs" element={<ProgramsPage />} />
           <Route path="/classes" element={<ClassesPage />} />
+          <Route path="/classes/joined" element={<ClassesUserPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

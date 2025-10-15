@@ -1,15 +1,15 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router";
-import ClassList from "../components/ClassList";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import UserClassList from '../components/UserClassList';
+import { NavLink } from 'react-router';
 
-export default function ClassesPage() {
+export default function ClassesUserPage() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchClasses() {
     try {
-      const { data } = await axios.get("http://localhost:3000/workout-classes", {
+      const { data } = await axios.get("http://localhost:3000/workout-classes-user", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setClasses(data.classes || []);
@@ -19,6 +19,13 @@ export default function ClassesPage() {
       setLoading(false);
     }
   }
+
+  const handleDeleteSuccess = (deletedId) => {
+    // Remove deleted class from state
+    setClasses((prevClasses) =>
+      prevClasses.filter((item) => item.WorkoutClass.id !== deletedId)
+    );
+  };
 
   useEffect(() => {
     fetchClasses();
@@ -35,8 +42,6 @@ export default function ClassesPage() {
               Browse all available sessions
             </small>
           </div>
-
-        {/* Pindah halaman, bukan tab */}
           <div className="mt-3 mt-md-0 d-flex gap-2">
             <NavLink
               to="/classes"
@@ -57,8 +62,6 @@ export default function ClassesPage() {
             </NavLink>
           </div>
         </div>
-
-        {/* List */}
         {loading ? (
           <div className="text-center text-secondary py-5">
             <div className="spinner-border text-light mb-3" role="status" />
@@ -67,9 +70,12 @@ export default function ClassesPage() {
         ) : (
           <div className="row g-4">
             {classes.length ? (
-              classes.map((classItem) => (
-                <div key={classItem.id} className="col-12 col-md-6 col-lg-4">
-                  <ClassList classItem={classItem} />
+              classes.map((item) => (
+                <div key={item.WorkoutClass.id} className="col-12 col-md-6 col-lg-4">
+                  <UserClassList
+                    classItem={item.WorkoutClass}
+                    onDeleteSuccess={handleDeleteSuccess}
+                  />
                 </div>
               ))
             ) : (

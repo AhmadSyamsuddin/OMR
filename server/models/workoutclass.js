@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     coachProfilePictureUrl: DataTypes.STRING,
     day: DataTypes.STRING,
     duration: DataTypes.INTEGER,
-    quota: DataTypes.INTEGER
+    quota: DataTypes.INTEGER,
+    currentQuota: { type: DataTypes.INTEGER, defaultValue: 0 },
   }, {
     sequelize,
     modelName: 'WorkoutClass',
