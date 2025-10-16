@@ -82,7 +82,7 @@ export default function ClassList({ classItem }) {
           </p>
           <p className="text-secondary small mb-3">
             Day: {classItem.day} • Quota:{" "}
-            <span className={isFull ? "text-danger" : "text-white"}>
+            <span className={isFull ? "text-danger" : "text-warning"}>
               {classItem.currentQuota}/{classItem.quota}
             </span>
             {isFull && <span className="badge bg-danger ms-2">FULL</span>}

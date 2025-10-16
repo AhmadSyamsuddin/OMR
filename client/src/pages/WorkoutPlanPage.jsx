@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWorkoutPlan, clearWorkoutPlan, clearError } from "../store/programsSlice";
-import { useParams, useLocation, useNavigate } from "react-router";
+import { useParams, useLocation, useNavigate, Link } from "react-router";
 import { toast } from "react-toastify";
 
 export default function WorkoutPlanPage() {
@@ -70,12 +70,12 @@ export default function WorkoutPlanPage() {
     <div className="bg-black min-vh-100">
       <div className="container py-5" style={{ maxWidth: 1200 }}>
         <div className="mb-4">
-          <button
+          <Link
             className="btn btn-link text-secondary text-decoration-none p-0 mb-3"
-            onClick={() => navigate("/programs")}
+            to="/programs"
           >
             ← Back to Programs
-          </button>
+          </Link>
           <h1 className="text-white fw-bold mb-2">7-Day Workout Plan</h1>
           <h3 className="text-white-50">{programName}</h3>
           <p className="text-secondary">

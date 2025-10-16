@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPrograms } from "../store/programsSlice";
 import ProgramCard from "../components/ProgramCard";
+import { Link } from "react-router";
 
 export default function ProgramsPage() {
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ export default function ProgramsPage() {
     <div className="bg-black min-vh-100">
       <div className="container py-5" style={{ maxWidth: 1200 }}>
         <div className="mb-4 text-center text-md-start">
+          <Link
+            className="btn btn-link text-secondary text-decoration-none p-0 mb-3"
+            to="/"
+          >
+            ← Back to Home
+          </Link>
           <h1 className="text-white fw-semibold m-0">Workout Programs</h1>
           <small className="text-secondary">
             Select your preferred sport or workout from the menu on this page and instantly generate a tailored one-week training plan to help you perform your best in your chosen activity!

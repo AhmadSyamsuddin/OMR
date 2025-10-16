@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClasses } from "../store/classesSlice";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import ClassList from "../components/ClassList";
 
 export default function ClassesPage() {
@@ -18,6 +18,12 @@ export default function ClassesPage() {
         {/* Header + Page Nav */}
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
           <div>
+            <Link
+            className="btn btn-link text-secondary text-decoration-none p-0 mb-3"
+            to="/"
+          >
+            ← Back to Home
+          </Link>
             <h1 className="text-white fw-semibold m-0">Workout Classes</h1>
             <small className="text-secondary">
               Browse all available sessions

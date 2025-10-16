@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserClasses } from "../store/userClassesSlice";
 import UserClassList from '../components/UserClassList';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 export default function ClassesUserPage() {
   const dispatch = useDispatch();
@@ -23,6 +23,12 @@ export default function ClassesUserPage() {
         {/* Header + Page Nav */}
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
           <div>
+            <Link
+            className="btn btn-link text-secondary text-decoration-none p-0 mb-3"
+            to="/"
+          >
+            ← Back to Home
+          </Link>
             <h1 className="text-white fw-semibold m-0">My Classes</h1>
             <small className="text-secondary">
               Classes you have joined
