@@ -151,7 +151,7 @@ export default function LoginPage() {
               <div id="googleSignInButton" className="w-100 d-grid mb-2" />
 
               <div className="d-flex justify-content-between align-items-center mt-3">
-                <p className="m-0">
+                <p className="mb-0 text-secondary">
                   Don't have an account?{" "}
                   <Link to={"/register"} className="link-light link-underline-opacity-0">
                     Sign Up

@@ -89,7 +89,7 @@ export default function UserClassList({ classItem, onDeleteSuccess }) {
                   Leaving...
                 </>
               ) : (
-                "Leave Class"
+                "Cancel  Class"
               )}
             </button>
           </div>

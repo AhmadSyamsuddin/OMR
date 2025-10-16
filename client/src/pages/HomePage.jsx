@@ -99,11 +99,8 @@ export default function HomePage() {
                       borderRadius: 16,
                     }}
                   >
-                    <span className="badge bg-warning text-dark mb-2">
-                      Membership Required
-                    </span>
                     <button
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-warning btn-sm"
                       onClick={handleSubscribe}
                       disabled={userLoading || paymentLoading}
                     >
@@ -116,6 +113,7 @@ export default function HomePage() {
                         "Subscribe Now"
                       )}
                     </button>
+                    <p className="text-center tex-wrap mt-2" style={{color : "rgba(171, 170, 170, 1)"}}>Unlock your fitness potential with membership access to various high-quality workout classes. Train with passionate coaches and feed off the electric energy of the group!</p>
                   </div>
                 </div>
               )}

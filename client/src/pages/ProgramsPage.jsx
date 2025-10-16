@@ -17,7 +17,7 @@ export default function ProgramsPage() {
         <div className="mb-4 text-center text-md-start">
           <h1 className="text-white fw-semibold m-0">Workout Programs</h1>
           <small className="text-secondary">
-            AI-tailored plans • Weekly structure • Track progress
+            Select your preferred sport or workout from the menu on this page and instantly generate a tailored one-week training plan to help you perform your best in your chosen activity!
           </small>
         </div>
 
