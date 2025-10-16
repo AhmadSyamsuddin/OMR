@@ -50,6 +50,13 @@ class PaymentController {
   }
 
   static async handleNotification(req, res, next) {
+    console.log('=== MIDTRANS WEBHOOK RECEIVED ===');
+    console.log('URL:', req.originalUrl);
+    console.log('Method:', req.method);
+    console.log('Headers:', JSON.stringify(req.headers, null, 2));
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+    console.log('==================================');
+
     try {
       let apiClient = new midtransClient.Snap({
         isProduction: false,
@@ -71,16 +78,20 @@ class PaymentController {
       // Update membership status based on transaction status
       if (transactionStatus === 'capture') {
         if (fraudStatus === 'accept') {
+          console.log(`Updating membership for user ${userId} - capture/accept`);
           await User.update(
             { isMembership: true },
             { where: { id: userId } }
           );
+          console.log(`Membership updated successfully for user ${userId}`);
         }
       } else if (transactionStatus === 'settlement') {
+        console.log(`Updating membership for user ${userId} - settlement`);
         await User.update(
           { isMembership: true },
           { where: { id: userId } }
         );
+        console.log(`Membership updated successfully for user ${userId}`);
       } else if (transactionStatus === 'cancel' ||
                  transactionStatus === 'deny' ||
                  transactionStatus === 'expire') {
@@ -90,6 +101,7 @@ class PaymentController {
         console.log(`Waiting for payment for order ${orderId}`);
       }
 
+      console.log('=== WEBHOOK RESPONSE SENT ===');
       res.status(200).json({ message: 'Notification processed' });
     } catch (error) {
       next(error);

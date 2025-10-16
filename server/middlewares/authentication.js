@@ -2,6 +2,12 @@ const { verifyToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
 async function authentication(req, res, next) {
+  console.log('=== AUTHENTICATION MIDDLEWARE ===');
+  console.log('Path:', req.path);
+  console.log('URL:', req.originalUrl);
+  console.log('Has Authorization:', !!req.headers.authorization);
+  console.log('=================================');
+
   const bearerToken = req.headers.authorization;
   if (!bearerToken) {
     throw { name: "Unauthorized", message : "Invalid Token 1" }
