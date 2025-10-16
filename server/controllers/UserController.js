@@ -35,7 +35,15 @@ class UserController {
             }
 
             const access_token = signToken({ id: user.id, email: user.email });
-            res.status(200).json({ access_token });
+            res.status(200).json({
+                access_token,
+                user: {
+                    id: user.id,
+                    fullName: user.fullName,
+                    email: user.email,
+                    isMembership: user.isMembership
+                }
+            });
         } catch (error) {
             next(error);
         }
@@ -63,7 +71,15 @@ class UserController {
             }
 
             const access_token = signToken({ id: user.id, email: user.email });
-            res.status(200).json({ access_token });
+            res.status(200).json({
+                access_token,
+                user: {
+                    id: user.id,
+                    fullName: user.fullName,
+                    email: user.email,
+                    isMembership: user.isMembership
+                }
+            });
         } catch (error) {
             next(error);
         }

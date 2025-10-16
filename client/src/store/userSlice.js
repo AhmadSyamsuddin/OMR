@@ -83,7 +83,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (s, a) => {
         s.loading = false;
-        s.token = a.payload.token;
+        s.token = a.payload.access_token;
         s.user = a.payload.user;
         s.isMembership = Boolean(a.payload.user?.isMembership);
       })
