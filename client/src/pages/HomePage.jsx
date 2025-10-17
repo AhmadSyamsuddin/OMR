@@ -51,8 +51,9 @@ export default function HomePage() {
   };
 
   return (
-    <div className="home-hero min-vh-100 d-flex align-items-center">
-      <div className="container py-5">
+    <div className="home-hero min-vh-100 d-flex flex-column align-items-center">
+      <img src="/logo-icon.png" style={{ maxWidth: "200px", height: "auto" }} alt="" />
+      <div className="container py-5 pt-0">
         <div className="home-overlay rounded-4 p-4 p-md-5">
           <div className="mb-4 text-center text-md-start">
             <h1 className="text-white fw-semibold m-0">Elevate Your Training</h1>
@@ -135,7 +136,22 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <div className="mt-5 mb-5"></div>
       </div>
+      <footer
+        className="text-center text-secondary py-3 mb-3"
+        style={{  left: 0, right: 0, bottom: 0 }}
+      >
+        <p className="mb-1">
+          Powered by GeminiAI{" "}
+          <img
+            src="/gemini.png"
+            alt="Gemini Logo"
+            style={{ maxWidth: "20px", verticalAlign: "middle" }}
+          />
+        </p>
+        <small className="text-secondary">This website is developed by Medd.</small>
+      </footer>
     </div>
   );
 }

@@ -516,3 +516,9 @@ Authorization: Bearer <access_token>
 - `PORT`
 - `JWT_SECRET`
 - `GEMINI_API_KEY`
+- `DATABASE_URL`
+- `NODE_ENV`
+
+
+
+
