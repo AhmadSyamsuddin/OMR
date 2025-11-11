@@ -1,0 +1,146 @@
+[
+  {
+    "name": "HIIT Express 60",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Mark_Kassen%2C_Tony_C%C3%A1rdenas_and_Chris_Evans_%28cropped%29.jpg",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 20
+  },
+  {
+    "name": "Strength Upper A",
+    "coach": "Coach Dira",
+    "coachProfilePictureUrl": "https://hips.hearstapps.com/hmg-prod/images/scarlett-johannson-attends-the-world-premiere-of-c2-a0jurassic-news-photo-1751578164.pjpeg?crop=0.573xw:0.860xh;0.274xw,0.0536xh&resize=640:*",
+    "day": "Tue",
+    "duration": 75,
+    "quota": 18
+  },
+  {
+    "name": "Strength Lower A",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "https://www.themodestman.com/wp-content/uploads/2013/03/Robert-Downey-Jr..jpg",
+    "day": "Wed",
+    "duration": 70,
+    "quota": 16
+  },
+  {
+    "name": "Core & Abs Builder",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "https://static.wikia.nocookie.net/total-movies/images/9/9d/Elizabeth_Olsen.jpg/revision/latest?cb=20151111220905",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 24
+  },
+  {
+    "name": "Mobility Flow Plus",
+    "coach": "Coach Wina",
+    "coachProfilePictureUrl": "https://deadline.com/wp-content/uploads/2023/08/zendaya.jpg?w=681&h=383&crop=1",
+    "day": "Fri",
+    "duration": 60,
+    "quota": 22
+  },
+  {
+    "name": "Yoga Vinyasa Deep",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "https://cdns.klimg.com/resized/670x/g/1/0/10_artis_hollywood_ini_sukses_jadi_wanita_tercantik_di_dunia/p/10_artis_hollywood_tercantik_di_dunia-20151229-004-rita.jpg",
+    "day": "Sat",
+    "duration": 75,
+    "quota": 28
+  },
+  {
+    "name": "Boxing Fundamentals",
+    "coach": "Coach Luthfi",
+    "coachProfilePictureUrl": "https://hips.hearstapps.com/hmg-prod/images/mike-tyson-looks-on-prior-to-the-heavyweight-fight-between-news-photo-1716476934.jpg?crop=0.640xw:0.961xh;0.154xw,0.0391xh&resize=640:*",
+    "day": "Sun",
+    "duration": 75,
+    "quota": 18
+  },
+  {
+    "name": "Runner’s Base Endurance",
+    "coach": "Coach Yani",
+    "coachProfilePictureUrl": "https://goldenglobes.com/wp-content/uploads/2023/10/Jennifer-Lawrence-Photo.png",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 30
+  },
+  {
+    "name": "Sprint Power Intervals",
+    "coach": "Coach Aji",
+    "coachProfilePictureUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFJKGO_qEXlJzR7mmTfixRlD3qlw1vDjNrpXMCBMGv9dXHK0X5T2hszlu6y8KCXIwE27z1s0kv1_9qkCMqKC3qs5JyXScAcmm4AtauhAVu4-DlVpd-4dZNNKjhjxR9dJ2zWbAdquF-iK5B/s1600/film+brad+pitt+-+namafilm.jpg",
+    "day": "Tue",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Cycling Endurance 70",
+    "coach": "Coach Rendi",
+    "coachProfilePictureUrl": "https://deadline.com/wp-content/uploads/2025/02/jason-statham.jpg?w=1024",
+    "day": "Wed",
+    "duration": 70,
+    "quota": 22
+  },
+  {
+    "name": "Cross-Training Circuit Pro",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 18
+  },
+  {
+    "name": "Kettlebell Conditioning 60",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "https://cdn.britannica.com/36/147936-050-8E84B614/Dwayne-Johnson.jpg",
+    "day": "Fri",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Bodyweight MetCon XL",
+    "coach": "Coach Tio",
+    "coachProfilePictureUrl": "https://static.wikia.nocookie.net/inception/images/0/06/Leonardo_dicaprio.jpg/revision/latest/scale-to-width-down/1200?cb=20250429025458",
+    "day": "Sat",
+    "duration": 60,
+    "quota": 26
+  },
+  {
+    "name": "Football Agility & Conditioning",
+    "coach": "Coach Rendi",
+    "coachProfilePictureUrl": "https://hips.hearstapps.com/hmg-prod/images/cristiano-ronaldo-of-portugal-during-the-uefa-nations-news-photo-1748359673.pjpeg?crop=0.610xw:0.917xh;0.317xw,0.0829xh&resize=640:*",
+    "day": "Sun",
+    "duration": 75,
+    "quota": 22
+  },
+  {
+    "name": "Morning Quick Sweat 60",
+    "coach": "Coach Raka",
+    "coachProfilePictureUrl": "https://cdnpro.eraspace.com/media/mageplaza/blog/post/s/i/siapa_itu_ishowspeed_primary.jpg",
+    "day": "Mon",
+    "duration": 60,
+    "quota": 28
+  },
+  {
+    "name": "Powerlifting Basics",
+    "coach": "Coach Bagas",
+    "coachProfilePictureUrl": "https://cdn.britannica.com/11/215011-050-3127A07E/American-actor-Keanu-Reeves-2014.jpg",
+    "day": "Tue",
+    "duration": 90,
+    "quota": 12
+  },
+  {
+    "name": "Functional Fitness 40+",
+    "coach": "Coach Wina",
+    "coachProfilePictureUrl": "https://cdn.britannica.com/32/201632-050-66971649/actress-Margot-Robbie-Australian-2018.jpg",
+    "day": "Wed",
+    "duration": 60,
+    "quota": 16
+  },
+  {
+    "name": "Yoga Mobility Reset",
+    "coach": "Coach Sari",
+    "coachProfilePictureUrl": "https://m.media-amazon.com/images/M/MV5BMTY3Nzg2NjA1OF5BMl5BanBnXkFtZTgwMjY5NTU1MzI@._V1_FMjpg_UX1000_.jpg",
+    "day": "Thu",
+    "duration": 60,
+    "quota": 20
+  }
+]
